@@ -1,0 +1,36 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,float,amsfonts,enumitem,tcolorbox}
+\usepackage{enumitem}
+\usepackage[margin=0.6in]{geometry}
+
+\usepackage{graphicx}
+\usepackage{url}
+
+<<{r  global_options},echo=FALSE>>=
+knitr::opts_chunk$set(include=TRUE,echo = TRUE, message = FALSE, warning = FALSE,
+                      fig.width=8, fig.height=6, fig.align='center',
+                      fig.asp = 1
+                      )
+@
+
+\title{STAT152 Project}
+\author {Caiyi Deng, Yuyang Hna, Zita Huang}
+
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\maketitle
+
+\section{Introduction}
+
+\vspace{0.2cm}
+
+A safe and secure school environment s is extremely important for students.
+We use the 2007-08 School Survey on Crime and Safety (SSOCS) to analyze whether school incidents are related to the mental education or help from school. 
+
+
+
+
+
+\end{document}
