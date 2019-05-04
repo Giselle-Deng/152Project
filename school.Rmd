@@ -1,0 +1,33 @@
+---
+title: "152section"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+school<-read.csv("school.csv", header= TRUE, stringsAsFactors = FALSE)
+school$strata
+schools<-select(school,schid,vioinc08,viopol08,c0212,c0272,c0274,c0264,c0136,finalwgt,strata)
+
+schools$c0212
+schools$c0212[schools$c0212==2]<-0
+schools$c0272[schools$c0272==2]<-0
+schools$c0274[schools$c0274==2]<-0
+schools$c0264[schools$c0264==2]<-0
+schools$c0264[schools$c0264==-1]<-NA
+schools$c0136[schools$c0136==2]<-0
+schools
+nrow(schools)
+head(schools)
+summary(schools)
+ggplot
+table(school$strata)
+#boxplots of the weights relative to the variables
+schools %>%
+  ggplot(aes(x=c0212,y=finalwgt))
+```
