@@ -29,8 +29,42 @@ knitr::opts_chunk$set(include=TRUE,echo = TRUE, message = FALSE, warning = FALSE
 A safe and secure school environment s is extremely important for students.
 We use the 2007-08 School Survey on Crime and Safety (SSOCS) to analyze whether school incidents are related to the mental education or help from school. 
 
+If you want to add picture, follow next line: (You can change the width of the pictue, things inside {} should be the name of the picture, the name of the picture should not have space)
+
+\includegraphics[width = 5.5cm]{RussianHill.jpg}
 
 
+\section{Survey Desgin}
 
+\vspace{0.2cm}
+
+zita: copy paste here
+
+katerina: copy paste here
+
+\section{Methodology}
+
+\vspace{0.2cm}
+
+Question 3 copy paste here....
+
+
+\section{Results}
+
+\vspace{0.2cm}
+
+Question 4 starts here
+
+\section{Conclusion}
+
+\vspace{0.2cm}
+
+Question 5 starts here
+
+\section{R code Appendix}
+
+\vspace{0.2cm}
+
+put R code sceenshot here 
 
 \end{document}
