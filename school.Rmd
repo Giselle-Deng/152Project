@@ -11,23 +11,50 @@ library(ggplot2)
 
 ```{r}
 school<-read.csv("school.csv", header= TRUE, stringsAsFactors = FALSE)
-school$strata
-schools<-select(school,schid,vioinc08,viopol08,c0212,c0272,c0274,c0264,c0136,finalwgt,strata)
+summary(school$c0264)
+table(school$c0264)
+unique(school$ic0264)
 
-schools$c0212
-schools$c0212[schools$c0212==2]<-0
-schools$c0272[schools$c0272==2]<-0
-schools$c0274[schools$c0274==2]<-0
-schools$c0264[schools$c0264==2]<-0
-schools$c0264[schools$c0264==-1]<-NA
-schools$c0136[schools$c0136==2]<-0
-schools
-nrow(schools)
-head(schools)
-summary(schools)
-ggplot
-table(school$strata)
-#boxplots of the weights relative to the variables
-schools %>%
-  ggplot(aes(x=c0212,y=finalwgt))
+
+
+data<-select(school,schid,vioinc08,c0174,c0176,c0178,c0180, c0264, finalwgt,strata)
+colnames(data) = c("school_id", "num_vioninc", "prevention_train", "modification", "counseling", "mentor","train_drug","final_wt", "strata")
+summary(data$modification)
+
+data$prevention_train[data$prevention_train == 2]<-0
+data$modification[data$modification == 2]<-0
+data$counseling[data$counseling==2]<-0
+data$mentor[data$mentor == 2] <- 0
+data$train_drug[data$train_drug == -1] <- NA
+
+summary(data)
+nrow(data)
+head(data)
+
+
+
 ```
+
+```{r}
+
+
+
+
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+

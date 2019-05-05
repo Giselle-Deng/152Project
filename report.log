@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  4 MAY 2019 15:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  4 MAY 2019 16:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -749,43 +749,30 @@ e
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 (./report-concordance.tex)
-LaTeX Font Info:    Try loading font information for U+msa on input line 18.
-
-(/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 18.
-
-(/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
 <RussianHill.jpg, id=5, 3641.605pt x 2731.20375pt>
 File: RussianHill.jpg Graphic file (type jpg)
 <use RussianHill.jpg>
-Package pdftex.def Info: RussianHill.jpg  used on input line 29.
+Package pdftex.def Info: RussianHill.jpg  used on input line 28.
 (pdftex.def)             Requested size: 156.49014pt x 117.35612pt.
  [1
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Russi
-anHill.jpg>]
-(./report.aux) ) 
+anHill.jpg>] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 13886 strings out of 492649
- 262375 string characters out of 6129622
+ 13831 strings out of 492649
+ 261647 string characters out of 6129622
  309097 words of memory out of 5000000
- 17470 multiletter control sequences out of 15000+600000
- 22280 words of font info for 56 fonts, out of 8000000 for 9000
+ 17444 multiletter control sequences out of 15000+600000
+ 12117 words of font info for 28 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 54i,6n,73p,830b,203s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr17.pfb>
-Output written on report.pdf (1 page, 1858076 bytes).
+ 54i,5n,73p,830b,128s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2018/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr10.pfb>
+Output written on report.pdf (1 page, 1837873 bytes).
 PDF statistics:
- 29 PDF objects out of 1000 (max. 8388607)
- 19 compressed objects within 1 object stream
+ 21 PDF objects out of 1000 (max. 8388607)
+ 13 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  22 words of extra memory for PDF output out of 10000 (max. 10000000)
 
