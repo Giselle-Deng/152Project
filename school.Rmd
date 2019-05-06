@@ -11,6 +11,7 @@ library(ggplot2)
 
 ```{r}
 school<-read.csv("school.csv", header= TRUE, stringsAsFactors = FALSE)
+school$schid
 summary(school$c0264)
 table(school$c0264)
 unique(school$ic0264)
@@ -25,24 +26,22 @@ data$prevention_train[data$prevention_train == 2]<-0
 data$modification[data$modification == 2]<-0
 data$counseling[data$counseling==2]<-0
 data$mentor[data$mentor == 2] <- 0
-data$train_drug[data$train_drug == -1] <- NA
 
 summary(data)
 nrow(data)
 head(data)
-
-
+data$final_wt
+boxplot(final_wt~prevention_train,data=data,col="lightgray",varwidth=TRUE, main="weights relative to mental health",xlab="prevention",ylab="weights")
 
 ```
 
 ```{r}
-
-
-
-
-
-
-
+dstrat <- svydesign(id = ~1, strata = ~strata, weights = ~final_wt, data = data,nest=T)
+summary(dstrat)
+svyboxplot( num_vioninc~prevention_train, dstrat, all.outliers = TRUE)
+subdata<-subset(data,strata>200&strata<400)
+dstrat2<-svydesign(id = ~1, strata = ~strata, weights = ~final_wt, data = subdata)
+data$school_id
 
 
 
