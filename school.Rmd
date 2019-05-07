@@ -31,22 +31,34 @@ summary(data)
 nrow(data)
 head(data)
 data$final_wt
-boxplot(final_wt~prevention_train,data=data,col="lightgray",varwidth=TRUE, main="weights relative to mental health",xlab="prevention",ylab="weights")
-
+range(data$final_wt)
+max(data$final_wt)
+boxplot(data$final_wt, plot=FALSE)$out
 ```
 
 ```{r}
 dstrat <- svydesign(id = ~1, strata = ~strata, weights = ~final_wt, data = data,nest=T)
 summary(dstrat)
-svyboxplot( num_vioninc~prevention_train, dstrat, all.outliers = TRUE)
 subdata<-subset(data,strata>200&strata<400)
 dstrat2<-svydesign(id = ~1, strata = ~strata, weights = ~final_wt, data = subdata)
 data$school_id
 
-
-
 ```
 
+```{r}
+svyboxplot( log(num_vioninc+2.7)~as.factor(prevention_train), dstrat, all.outliers = TRUE)
+svyboxplot( log(num_vioninc+2.7)~as.factor(modification), dstrat, all.outliers = TRUE)
+svyboxplot(log(num_vioninc+2.7)~as.factor(counseling), dstrat, all.outliers = TRUE)
+svyboxplot( log(num_vioninc+2.7)~as.factor(mentor), dstrat, all.outliers = TRUE)
+```
+
+```{r}
+svyboxplot( log(num_vioninc+2.7)~as.factor(train_drug), dstrat, all.outliers = TRUE)
+
+ggplot(data, aes(x=as.factor(train_drug), y = log(num_vioninc + 2.7))) +
+  geom_boxplot() + ggtitle("Teach or Train Students") +
+  xlab("Teach or Train Students") + ylab("# of Incidents")
+```
 
 
 
