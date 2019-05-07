@@ -72,7 +72,18 @@ rep_design <- svrepdesign(variables = school[,-c(201:251)],
                           repweights = school[, 202:251],
                           weights = school[,201],
                           combined.weights = TRUE,
-                          type = "other", scale = 1, rscales = 1)
+                          type = "JKn", scale = 1, rscales = 1)
+svymean(~vioinc08, rep_design)
+#subset rows which are only middle schools and high school 
+new_design <- subset(rep_design, strata>200 & strata<400) 
+svymean(~vioinc08, new_design)
+
+#run subset on the desgin
+#type = "JKn" is jacknife
+
+# do svyglm() on the new_design
+svyglm(vioinc08 ~ c0174 + c0176 + c0178 +c0180 + c0264, new_design)
+
 rep_design
 ?svymean()
 svytotal(school$vioinc08, rep_design)
@@ -82,7 +93,17 @@ svymean(~interaction(school$vioinc08, ))
 which(colnames(school) == "finalwgt")
 which(colnames(school) == "repwgt50")
 
+?svrepdesign()
 
+# ?update() for adding a new variable. 
+?update()
+
+#proportion
+
+#for categorical variable, chiqsquare & t-distribution
+#svyglm for categorical need to imput more staff inside the arguments.
+
+#what the difference for using different implutation variable, should be relative to the enrollment size. 
 ```
 
 
