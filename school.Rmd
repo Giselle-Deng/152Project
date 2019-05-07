@@ -7,6 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 library(ggplot2)
+library(survey)
 ```
 
 ```{r}
@@ -36,12 +37,14 @@ max(data$final_wt)
 boxplot(data$final_wt, plot=FALSE)$out
 ```
 
+#survey design
 ```{r}
 dstrat <- svydesign(id = ~1, strata = ~strata, weights = ~final_wt, data = data,nest=T)
 summary(dstrat)
 subdata<-subset(data,strata>200&strata<400)
 dstrat2<-svydesign(id = ~1, strata = ~strata, weights = ~final_wt, data = subdata)
 data$school_id
+
 
 ```
 
@@ -62,6 +65,25 @@ ggplot(data, aes(x=as.factor(train_drug), y = log(num_vioninc + 2.7))) +
 
 
 
+#deal with replicated weight
+```{r}
+summary(school)
+rep_design <- svrepdesign(variables = school[,-c(201:251)],
+                          repweights = school[, 202:251],
+                          weights = school[,201],
+                          combined.weights = TRUE,
+                          type = "other", scale = 1, rscales = 1)
+rep_design
+?svymean()
+svytotal(school$vioinc08, rep_design)
+svymean(school$vioinc08, rep_design)
+svymean(~interaction(school$vioinc08, ))
+
+which(colnames(school) == "finalwgt")
+which(colnames(school) == "repwgt50")
+
+
+```
 
 
 
