@@ -12,12 +12,14 @@ library(survey)
 
 ```{r}
 school<-read.csv("school.csv", header= TRUE, stringsAsFactors = FALSE)
+ncol(school)
 school$schid
 summary(school$c0264)
 table(school$c0264)
 unique(school$ic0264)
 
-
+school$c0174
+factor(school$c0174)
 
 data<-select(school,schid,vioinc08,c0174,c0176,c0178,c0180, c0264, finalwgt,strata)
 colnames(data) = c("school_id", "num_vioninc", "prevention_train", "modification", "counseling", "mentor","train_drug","final_wt", "strata")
@@ -35,18 +37,21 @@ data$final_wt
 range(data$final_wt)
 max(data$final_wt)
 boxplot(data$final_wt, plot=FALSE)$out
+
+
+school$inc_level <- cut(school$vioinc08,
+  breaks = quantile(school$vioinc08, c(0, 0.25,0.75, 1)),
+  labels = c("1", "2", "3"),
+  right  = FALSE,
+  include.lowest = TRUE
+)
+
+
+
+
 ```
 
-#survey design
-```{r}
-dstrat <- svydesign(id = ~1, strata = ~strata, weights = ~final_wt, data = data,nest=T)
-summary(dstrat)
-subdata<-subset(data,strata>200&strata<400)
-dstrat2<-svydesign(id = ~1, strata = ~strata, weights = ~final_wt, data = subdata)
-data$school_id
 
-
-```
 
 ```{r}
 svyboxplot( log(num_vioninc+2.7)~as.factor(prevention_train), dstrat, all.outliers = TRUE)
@@ -78,6 +83,9 @@ svymean(~vioinc08, rep_design)
 new_design <- subset(rep_design, strata>200 & strata<400) 
 svymean(~vioinc08, new_design)
 
+
+####try <- subset(rep_design, strata>200 & strata < 400, )
+
 #run subset on the desgin
 #type = "JKn" is jacknife
 
@@ -85,18 +93,18 @@ svymean(~vioinc08, new_design)
 svyglm(vioinc08 ~ c0174 + c0176 + c0178 +c0180 + c0264, new_design)
 
 rep_design
-?svymean()
+
 svytotal(school$vioinc08, rep_design)
 svymean(school$vioinc08, rep_design)
-svymean(~interaction(school$vioinc08, ))
+
 
 which(colnames(school) == "finalwgt")
 which(colnames(school) == "repwgt50")
 
-?svrepdesign()
+
 
 # ?update() for adding a new variable. 
-?update()
+
 
 #proportion
 
@@ -149,15 +157,18 @@ summary(school$vioinc08)
 #number of incident less than 
 
 
-
-svytable(~c0174 + c0178 +strata, design = test_design)
+svytable(~c0174 + c0178 + strata, design = hs_design)
 prop.table(svytable(~c0174 + c0176 + strata, design = new_design), margin = 2)
 svyby(formula = ~c0174, by = ~fr_size, design = new_design, FUN = svytotal)
 
 
 ?svyglm()
-fit <- svyglm(vioinc08 ~ factor(c0174) + factor(c0176) + factor(c0178) + factor(c0180) + factor(c0264), design = hs_design)
+fit <- svyglm(vioinc08 ~ factor(c0174) + factor(c0176) + factor(c0178) + factor(c0180), design = hs_design)
 summary(fit)
+
+
+
+
 
 
 
