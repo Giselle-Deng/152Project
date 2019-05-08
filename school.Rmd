@@ -167,11 +167,35 @@ fit <- svyglm(vioinc08 ~ factor(c0174) + factor(c0176) + factor(c0178) + factor(
 summary(fit)
 
 
+#Define hypothesis
+#H0: same mean in x and y
+x = school$vioinc08[school$c0174==1]
+y = school$vioinc08[school$c0174==2]
+t.test(x,y)
 
+#Define hypothesis
+#H0: same mean in x and y
+x = school$vioinc08[school$c0176==1]
+y = school$vioinc08[school$c0176==2]
+t.test(x,y)
 
+#Define hypothesis
+#H0: same mean in x and y
+x = school$vioinc08[school$c0178==1]
+y = school$vioinc08[school$c0178==2]
+t.test(x,y)
 
+#Define hypothesis
+#H0: same mean in x and y
+x = school$vioinc08[school$c0180==1]
+y = school$vioinc08[school$c0180==2]
+t.test(x,y)
 
-
+#chi-square
+svychisq(~c0174+inc_level, hs_design)
+svychisq(~c0176+inc_level, hs_design)
+svychisq(~c0178+inc_level, hs_design)
+svychisq(~c0180+inc_level, hs_design)
 ```
 
 
