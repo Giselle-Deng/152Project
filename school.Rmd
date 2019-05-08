@@ -107,7 +107,61 @@ which(colnames(school) == "repwgt50")
 ```
 
 
+```{r}
+table(school$c0174, school$fr_size)
+prop.table(table(school$c0174, school$fr_size), margin = 2)
+chisq.test(table(school$c0174, school$fr_size))
 
+svytable(~c0174 + fr_size, design = new_design)
+prop.table(svytable(~c0174 + fr_size, design = new_design), margin = 2)
+svyby(formula = ~c0174, by = ~fr_size, design = new_design, FUN = svymean)
+
+```
+
+```{r}
+rep_design <- svrepdesign(variables = school[,-c(201:251)],
+                          repweights = school[, 202:251],
+                          weights = school[,201],
+                          combined.weights = TRUE,
+                          type = "JKn", scale = 1, rscales = 1)
+#subset rows which are only middle schools and high school 
+hs_design <- subset(rep_design, strata>300 & strata<400) 
+svymean(~vioinc08, hs_design)
+true_total <- svytotal(~vioinc08, hs_design)
+true_total
+
+library(dplyr)
+df <- school %>% filter(strata > 300 & strata < 400)
+sum(df$vioinc08)
+sum(school$vioinc08)
+
+summary(df$strata)
+nrow(df)
+
+school %>% filter(strata > 300 & strata < 400) %>% summarise(sum(vioinc08))
+
+a <- svyby(formula = ~vioinc08, by = ~strata, design = hs_design, FUN = svytotal)
+a
+a$vioinc08 / true_total
+
+
+summary(school$vioinc08)
+#number of incident less than 
+
+
+
+svytable(~c0174 + c0178 +strata, design = test_design)
+prop.table(svytable(~c0174 + c0176 + strata, design = new_design), margin = 2)
+svyby(formula = ~c0174, by = ~fr_size, design = new_design, FUN = svytotal)
+
+
+?svyglm()
+fit <- svyglm(vioinc08 ~ factor(c0174) + factor(c0176) + factor(c0178) + factor(c0180) + factor(c0264), design = hs_design)
+summary(fit)
+
+
+
+```
 
 
 
